@@ -1,29 +1,22 @@
 package org.safecoin.controller;
 
 import org.safecoin.dto.Rate;
-import org.safecoin.service.RestClientService;
+import org.safecoin.service.RatesService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 public class RateController {
-
     @Autowired
-    RestClientService restClientService;
+    RatesService ratesService;
 
-    @RequestMapping("/rates")
-    public Rate[] getRates(){
-        BigDecimal safeBtcRate = restClientService.getSafeBtcRate();
-        Rate[] bitpayRates = restClientService.getBitpayData();
-
-        for (Rate r : bitpayRates){
-            BigDecimal btcRate = r.getRate();
-            r.setRate(btcRate.multiply(safeBtcRate));
-        }
-        return bitpayRates;
+    @RequestMapping("/{symbol}")
+    public List<Rate> getRates(@PathVariable("symbol") String symbol){
+        return ratesService.getRates(symbol.toUpperCase());
     }
 }
