@@ -7,7 +7,8 @@ public enum Coins {
     ZEL("ZelCash", RateDataSource.COINLIB),
     RVN("Ravencoin", RateDataSource.COINLIB),
     ZCL("Zclassic", RateDataSource.COINLIB),
-    LTC("Litecoin", RateDataSource.COINLIB);
+    LTC("Litecoin", RateDataSource.COINLIB),
+    BCH("Bitcoin Cash", RateDataSource.COINLIB);
 
     private String name;
 

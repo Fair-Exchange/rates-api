@@ -3,21 +3,22 @@ package org.safecoin.dto;
 import java.math.BigDecimal;
 
 public class Rate {
-    public static class Builder {
+    public static class RateBuilder {
         private String code;
         private String name;
         private BigDecimal rate;
 
-        public Builder(String code){
+        public RateBuilder withCode(String code){
             this.code = code;
+            return this;
         }
 
-        public Builder withName(String name){
+        public RateBuilder withName(String name){
             this.name = name;
             return this;
         }
 
-        public Builder atRate(BigDecimal rate){
+        public RateBuilder atRate(BigDecimal rate){
             this.rate = rate;
             return this;
         }

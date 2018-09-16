@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class RatesService {
@@ -32,16 +29,19 @@ public class RatesService {
         Map<String, BigDecimal> btcRates = restClientService.getCoinLibBtcRates();
         btcRates.putAll(restClientService.getSafeTradeBtcRates());
         Rate[] bitpayRates = restClientService.getBitpayData();
+        rates.put("BTC", Arrays.asList(bitpayRates));
         for (String key : btcRates.keySet()){
             List<Rate> currencyRates = new ArrayList<>();
-            Rate ownRate = new Rate.Builder(key)
+            Rate ownRate = new Rate.RateBuilder()
+                    .withCode(key)
                     .withName(Coins.valueOf(key).getName())
                     .atRate(new BigDecimal(1))
                     .build();
             currencyRates.add(ownRate);
             BigDecimal btcRate = btcRates.get(key);
             for (Rate r : bitpayRates){
-                Rate rate = new Rate.Builder(r.getCode())
+                Rate rate = new Rate.RateBuilder()
+                        .withCode(r.getCode())
                         .withName(r.getName())
                         .atRate(r.getRate().multiply(btcRate))
                         .build();

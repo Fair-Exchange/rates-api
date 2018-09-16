@@ -1,6 +1,7 @@
 package org.safecoin.controller;
 
 import org.safecoin.dto.Rate;
+import org.safecoin.exception.CoinNotFoundException;
 import org.safecoin.service.RatesService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,12 @@ public class RateController {
     @Autowired
     RatesService ratesService;
 
-    @RequestMapping("/{symbol}")
+    @RequestMapping("/rates/{symbol}")
     public List<Rate> getRates(@PathVariable("symbol") String symbol){
-        return ratesService.getRates(symbol.toUpperCase());
+        List<Rate> l = ratesService.getRates(symbol.toUpperCase());
+        if (l == null){
+            throw new CoinNotFoundException(symbol);
+        }
+        return l;
     }
 }
