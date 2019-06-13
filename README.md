@@ -18,5 +18,5 @@ sudo docker build -t rates-api .
 
 #### Run container
 ```shell
-sudo docker run -it -p 80:80 rates-api
+sudo docker run -p 80:80 rates-api
 ```
