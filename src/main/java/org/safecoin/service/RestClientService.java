@@ -78,6 +78,7 @@ public class RestClientService {
     public HttpEntity<String> getHttpEntity(){
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+	headers.add("Access-Control-Allow-Origin", "*");
         headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
         return entity;
