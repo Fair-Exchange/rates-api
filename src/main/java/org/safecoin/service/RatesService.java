@@ -18,7 +18,7 @@ public class RatesService {
     private Long lastUpdated;
 
     public List<Rate> getRates(String coin){
-        if (lastUpdated == null || (System.currentTimeMillis() - lastUpdated) > 300000){
+        if (lastUpdated == null || (System.currentTimeMillis() - lastUpdated) > 1200000){
             refreshRates();
         }
         return rates.get(coin);
