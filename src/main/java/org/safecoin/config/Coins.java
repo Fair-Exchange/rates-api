@@ -6,6 +6,8 @@ public enum Coins {
     BTCZ("BitcoinZ", RateDataSource.COINLIB),
     BTG("Bitcoin Golg", RateDataSource.COINLIB),
     ANON("Anonymous Bitcoin", RateDataSource.SAFE_TRADE),
+    ZEC("Zcash", RateDataSource.COINLIB),
+    YEC("Ycash", RateDataSource.SAFE_TRADE),
     ZEL("ZelCash", RateDataSource.COINLIB),
     ZEN("HoriZen", RateDataSource.COINLIB),
     RVN("Ravencoin", RateDataSource.COINLIB),
