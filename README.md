@@ -13,10 +13,10 @@ mvn clean package
 
 #### Build docker image
 ```shell
-sudo docker build -t rates-api .
+docker build -t rates-api .
 ```
 
 #### Run container
 ```shell
-sudo docker run -p 80:80 rates-api
+docker run -p 8087:80 rates-api
 ```
